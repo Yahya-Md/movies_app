@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/style/app_colors.dart';
 
 class Movie {
   final String poster;
@@ -65,7 +66,7 @@ class MovieCardWidget extends StatelessWidget {
                           Text(
                             movie.title,
                             style: textTheme.bodyLarge?.copyWith(
-                                color: Colors.white,
+                                color: AppColors.white,
                                 fontWeight: FontWeight.bold),
                           ),
                           Spacer(),
@@ -75,7 +76,7 @@ class MovieCardWidget extends StatelessWidget {
                               Text(
                                 movie.rating,
                                 style: textTheme.bodyMedium?.copyWith(
-                                    color: Colors.white,
+                                    color: AppColors.white,
                                     fontWeight: FontWeight.w600),
                               ),
                               Icon(
@@ -93,14 +94,14 @@ class MovieCardWidget extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0, vertical: 3),
                                   decoration: BoxDecoration(
-                                      color: Colors.blueAccent,
+                                      color: AppColors.blue,
                                       borderRadius: BorderRadius.circular(
                                         20,
                                       )),
                                   child: Text(
                                     category,
                                     style: textTheme.bodySmall?.copyWith(
-                                        color: Colors.white,
+                                        color: AppColors.white,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ))
