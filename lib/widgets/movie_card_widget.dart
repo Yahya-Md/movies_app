@@ -37,10 +37,15 @@ class MovieCardWidget extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.black87, Colors.black12],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter)),
+              gradient: LinearGradient(
+                colors: [
+                  Colors.black87.withValues(alpha: 0.2),
+                  Colors.black12.withValues(alpha: 0.2)
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
+            ),
           ),
           Positioned(
             bottom: 0,
@@ -48,14 +53,14 @@ class MovieCardWidget extends StatelessWidget {
             left: 0,
             child: ClipRRect(
               child: BackdropFilter(
-                enabled: false,
-                filter: ImageFilter.blur(sigmaX: 4, sigmaY: 2),
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 12),
                   child: Column(
+                    spacing: 3,
                     children: [
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             movie.title,
@@ -66,7 +71,6 @@ class MovieCardWidget extends StatelessWidget {
                           Spacer(),
                           Row(
                             spacing: 2,
-                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
                                 movie.rating,
@@ -77,6 +81,7 @@ class MovieCardWidget extends StatelessWidget {
                               Icon(
                                 Icons.star,
                                 color: Colors.amber,
+                                size: 18,
                               )
                             ],
                           )
@@ -84,8 +89,20 @@ class MovieCardWidget extends StatelessWidget {
                       ),
                       Row(
                         children: movie.categories
-                            .map((category) => Chip(
-                                  label: Text(category),
+                            .map((category) => Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0, vertical: 3),
+                                  decoration: BoxDecoration(
+                                      color: Colors.blueAccent,
+                                      borderRadius: BorderRadius.circular(
+                                        20,
+                                      )),
+                                  child: Text(
+                                    category,
+                                    style: textTheme.bodySmall?.copyWith(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 ))
                             .toList(),
                       )
