@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/style/app_colors.dart';
+import 'package:movies_app/widgets/popular_movies_list_widget.dart';
 import 'package:movies_app/widgets/section_header_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,6 +23,12 @@ class HomePage extends StatelessWidget {
                     // TODO: Add as dependency
                   },
                 ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 350,
+                child: PopularMoviesListWidget(),
               ),
             ),
             SliverToBoxAdapter(
