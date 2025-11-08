@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 350,
+                height: 320,
                 child: PopularMoviesListWidget(
                   onMovieCardTap: (id) {
                     print(id);
@@ -74,6 +74,29 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                ///no.of items in the horizontal axis
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                mainAxisExtent: 300,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return MovieCardWidget(
+                    movie: Movie(
+                      id: 102,
+                      poster:
+                          "https://image.tmdb.org/t/p/w300/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
+                      title: "The Super Mario Bros. Movie",
+                      rating: "7.5",
+                      categories: ["categories"],
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),
