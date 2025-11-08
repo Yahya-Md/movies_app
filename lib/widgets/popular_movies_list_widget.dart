@@ -25,7 +25,13 @@ class PopularMoviesListAnimation with ChangeNotifier {
 }
 
 class PopularMoviesListWidget extends StatefulWidget {
-  const PopularMoviesListWidget({super.key});
+  final List<Movie> movies;
+  final void Function(int) onMovieCardTap;
+  const PopularMoviesListWidget({
+    super.key,
+    required this.onMovieCardTap,
+    required this.movies,
+  });
 
   @override
   State<PopularMoviesListWidget> createState() =>
@@ -50,6 +56,8 @@ class _PopularMoviesListWidgetState extends State<PopularMoviesListWidget> {
     super.dispose();
   }
 
+  List<Movie> get movies => widget.movies;
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -57,8 +65,9 @@ class _PopularMoviesListWidgetState extends State<PopularMoviesListWidget> {
       builder: (context, child) {
         return PageView.builder(
           controller: controller,
-          itemCount: 4,
+          itemCount: movies.length,
           itemBuilder: (context, index) {
+            final movie = movies[index];
             double page = controller.page ?? controller.initialPage.toDouble();
             double scale = (1 - ((page - index).abs() * 0.2)).clamp(0.7, 1.0);
             double angle = -(page - index) * 0.15;
@@ -73,14 +82,8 @@ class _PopularMoviesListWidgetState extends State<PopularMoviesListWidget> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: MovieCardWidget(
-                      onMovieCardTap: () => print('Tapped $index'),
-                      movie: Movie(
-                        poster:
-                            "https://image.tmdb.org/t/p/w300/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                        title: "The Super Mario Bros. Movie",
-                        rating: "7.5",
-                        categories: ["categories"],
-                      ),
+                      onMovieCardTap: () => widget.onMovieCardTap(movie.id),
+                      movie: movie,
                     ),
                   ),
                 ),
@@ -92,3 +95,14 @@ class _PopularMoviesListWidgetState extends State<PopularMoviesListWidget> {
     );
   }
 }
+
+/*
+Movie(
+                        id: 100,
+                        poster:
+                            "https://image.tmdb.org/t/p/w300/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
+                        title: "The Super Mario Bros. Movie",
+                        rating: "7.5",
+                        categories: ["categories"],
+                      ),
+                      */

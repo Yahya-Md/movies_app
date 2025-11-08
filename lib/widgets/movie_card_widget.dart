@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/core/style/app_colors.dart';
 
 class Movie {
+  final int id;
   final String poster;
   final String title;
   final String rating;
   final List<String> categories;
 
   Movie({
+    required this.id,
     required this.poster,
     required this.title,
     required this.rating,
